@@ -1,0 +1,3206 @@
+<schema
+  xmlns='http://www.w3.org/2000/10/XMLSchema'
+  targetNamespace='http://www.w3.org/namespace/'
+  xmlns:t='http://www.w3.org/namespace/'>
+
+ <element name='Name'>
+  <complexType mixed='true'>
+   <attribute name='xml:lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='Extrinsic'>
+  <complexType>
+   <sequence>
+   <any namespace='http://www.w3.org/namespace/'/>
+   </sequence>
+   <attribute name='name' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='Description'>
+  <complexType mixed='true'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:ShortName'/>
+   </sequence>
+   <attribute name='xml:lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ShortName'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='CountryCode'>
+  <complexType mixed='true'>
+   <attribute name='isoCountryCode' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='AreaOrCityCode'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='Number'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='Extension'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='TelephoneNumber'>
+  <complexType>
+   <sequence>
+    <element ref='t:CountryCode'/>
+    <element ref='t:AreaOrCityCode'/>
+    <element ref='t:Number'/>
+    <element ref='t:Extension' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Phone'>
+  <complexType>
+   <sequence>
+    <element ref='t:TelephoneNumber'/>
+   </sequence>
+   <attribute name='name' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Fax'>
+  <complexType>
+   <choice>
+    <element ref='t:TelephoneNumber'/>
+    <element ref='t:URL'/>
+    <element ref='t:Email'/>
+   </choice>
+   <attribute name='name' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='URL'>
+  <complexType mixed='true'>
+   <attribute name='name' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Email'>
+  <complexType mixed='true'>
+   <attribute name='name' type='string' use='optional'/>
+   <attribute name='preferredLang' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Contact'>
+  <complexType>
+   <sequence>
+    <element ref='t:Name'/>
+    <element ref='t:PostalAddress' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Email' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Phone' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Fax' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:URL' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='role' type='NMTOKEN' use='optional'/>
+   <attribute name='addressID' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='DeliverTo'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='Street'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='City'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='State'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='PostalCode'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='Country'>
+  <complexType mixed='true'>
+   <attribute name='isoCountryCode' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='PostalAddress'>
+  <complexType>
+   <sequence>
+    <element ref='t:DeliverTo' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Street' maxOccurs='unbounded'/>
+    <element ref='t:City'/>
+    <element ref='t:State' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:PostalCode' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Country'/>
+   </sequence>
+   <attribute name='name' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Address'>
+  <complexType>
+   <sequence>
+    <element ref='t:Name'/>
+    <element ref='t:PostalAddress' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Email' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Phone' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Fax' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:URL' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='isoCountryCode' type='string' use='optional'/>
+   <attribute name='addressID' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Money'>
+  <complexType mixed='true'>
+   <attribute name='currency' type='string' use='required'/>
+   <attribute name='alternateAmount' type='string' use='optional'/>
+   <attribute name='alternateCurrency' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Comments'>
+  <complexType mixed='true'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:Attachment'/>
+   </sequence>
+   <attribute name='xml:lang' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Attachment'>
+  <complexType>
+   <sequence>
+    <element ref='t:URL'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='AttachmentReference'>
+  <complexType>
+   <sequence>
+    <element ref='t:Name'/>
+    <element ref='t:Description'/>
+    <element ref='t:InternalID'/>
+   </sequence>
+   <attribute name='length' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='UnitPrice'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='DocumentReference'>
+  <complexType>
+   <attribute name='payloadID' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='InternalID'>
+  <complexType mixed='true'>
+   <attribute name='domain' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='OriginatorCookie'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='BrowserFormPost'>
+  <complexType>
+   <sequence>
+    <element ref='t:URL'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='SelectedService'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='StartPage'>
+  <complexType>
+   <sequence>
+    <element ref='t:URL'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ReturnData'>
+  <complexType>
+   <sequence>
+    <element ref='t:ReturnValue'/>
+    <element ref='t:Name'/>
+   </sequence>
+   <attribute name='name' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ReturnValue'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='TimeRange'>
+  <complexType>
+   <attribute name='startDate' type='string' use='optional'/>
+   <attribute name='endDate' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Period'>
+  <complexType>
+   <attribute name='startDate' type='string' use='required'/>
+   <attribute name='endDate' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='TermReference'>
+  <complexType>
+   <attribute name='termName' type='string' use='required'/>
+   <attribute name='term' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='UnitRate'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+    <element ref='t:UnitOfMeasure'/>
+    <element ref='t:TermReference' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Supplier'>
+  <complexType>
+   <sequence>
+    <element ref='t:Name'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:SupplierID' maxOccurs='unbounded'/>
+    <element ref='t:SupplierLocation' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='corporateURL' type='string' use='optional'/>
+   <attribute name='storeFrontURL' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='SupplierLocation'>
+  <complexType>
+   <sequence>
+    <element ref='t:Address'/>
+    <element ref='t:OrderMethods'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='OrderMethods'>
+  <complexType>
+   <sequence>
+    <element ref='t:OrderMethod' maxOccurs='unbounded'/>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='OrderMethod'>
+  <complexType>
+   <sequence>
+    <element ref='t:OrderTarget'/>
+    <element ref='t:OrderProtocol' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='OrderTarget'>
+  <complexType>
+   <choice>
+    <element ref='t:Phone'/>
+    <element ref='t:Email'/>
+    <element ref='t:Fax'/>
+    <element ref='t:URL'/>
+    <element ref='t:OtherOrderTarget'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='OrderProtocol'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='OtherOrderTarget'>
+  <complexType>
+   <sequence>
+   <any namespace='http://www.w3.org/namespace/'/>
+   </sequence>
+   <attribute name='name' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='SupplierID'>
+  <complexType mixed='true'>
+   <attribute name='domain' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='SupplierList'>
+  <complexType>
+   <sequence>
+    <element ref='t:Supplier' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='UnitOfMeasure'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ManufacturerPartID'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ManufacturerName'>
+  <complexType mixed='true'>
+   <attribute name='xml:lang' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Classification'>
+  <complexType mixed='true'>
+   <attribute name='domain' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='LeadTime'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='SupplierPartID'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='SupplierPartAuxiliaryID'>
+  <complexType>
+   <sequence>
+   <any namespace='http://www.w3.org/namespace/'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ItemID'>
+  <complexType>
+   <sequence>
+    <element ref='t:SupplierPartID'/>
+    <element ref='t:SupplierPartAuxiliaryID' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ItemDetail'>
+  <complexType>
+   <sequence>
+    <element ref='t:UnitPrice'/>
+    <element ref='t:Description' maxOccurs='unbounded'/>
+    <element ref='t:UnitOfMeasure'/>
+    <element ref='t:Classification' maxOccurs='unbounded'/>
+    <element ref='t:ManufacturerPartID' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:ManufacturerName' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:URL' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:LeadTime' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Extrinsic' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='TravelDetail'>
+  <complexType>
+   <sequence>
+    <choice>
+     <element ref='t:AirDetail'/>
+     <element ref='t:CarRentalDetail'/>
+     <element ref='t:HotelDetail'/>
+     <element ref='t:RailDetail'/>
+    </choice>
+    <element ref='t:PolicyViolation' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:TermsAndConditions' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='confirmationNumber' type='string' use='required'/>
+   <attribute name='pnrLocator' type='string' use='optional'/>
+   <attribute name='quoteExpirationTime' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='AirDetail'>
+  <complexType>
+   <sequence>
+    <element ref='t:TripType'/>
+    <element ref='t:AirLeg' maxOccurs='unbounded'/>
+    <element ref='t:AvailablePrice' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Penalty' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='AirLeg'>
+  <complexType>
+   <sequence>
+    <element ref='t:Vendor'/>
+    <element ref='t:AirLegOrigin'/>
+    <element ref='t:AirLegDestination'/>
+    <element ref='t:BookingClassCode' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Rate' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Meal' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='travelSegment' type='string' use='required'/>
+   <attribute name='departureTime' type='string' use='required'/>
+   <attribute name='arrivalTime' type='string' use='required'/>
+   <attribute name='flightNumber' type='string' use='required'/>
+   <attribute name='seatNumber' type='string' use='optional'/>
+   <attribute name='seatType' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='window'/>
+      <enumeration value='aisle'/>
+      <enumeration value='middle'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='upgrade' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='stops' type='string' use='optional'/>
+   <attribute name='equipment' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='AirLegOrigin'>
+  <complexType>
+   <sequence>
+    <element ref='t:Airport'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='AirLegDestination'>
+  <complexType>
+   <sequence>
+    <element ref='t:Airport'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Airport'>
+  <complexType>
+   <sequence>
+    <element ref='t:Address' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='airportCode' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='Meal'>
+  <complexType>
+   <sequence>
+    <element ref='t:BookingClassCode' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Description' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='CarRentalDetail'>
+  <complexType>
+   <sequence>
+    <element ref='t:Vendor'/>
+    <element ref='t:CarRentalPickup'/>
+    <element ref='t:CarRentalDropoff'/>
+    <element ref='t:BookingClassCode' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:CarRentalFee' maxOccurs='unbounded'/>
+    <element ref='t:LimitedMileage' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:AvailablePrice' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='travelSegment' type='string' use='required'/>
+   <attribute name='pickupTime' type='string' use='required'/>
+   <attribute name='dropoffTime' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='CarRentalPickup'>
+  <complexType>
+   <choice>
+    <element ref='t:Airport'/>
+    <element ref='t:Address'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='CarRentalDropoff'>
+  <complexType>
+   <choice>
+    <element ref='t:Airport'/>
+    <element ref='t:Address'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='LimitedMileage'>
+  <complexType>
+   <sequence>
+    <element ref='t:UnitOfMeasure'/>
+   </sequence>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='CarRentalFee'>
+  <complexType>
+   <sequence>
+    <element ref='t:Total'/>
+    <element ref='t:Rate' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='type' use='default' value='baseRate'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='baseRate'/>
+      <enumeration value='additionalDriver'/>
+      <enumeration value='airportAccessFee'/>
+      <enumeration value='dropOffCharge'/>
+      <enumeration value='vehicleLicensingFee'/>
+      <enumeration value='touristTax'/>
+      <enumeration value='prepaidGasoline'/>
+      <enumeration value='navigationSystem'/>
+      <enumeration value='childSeat'/>
+      <enumeration value='luggageRack'/>
+      <enumeration value='collisionDamageInsurance'/>
+      <enumeration value='liabilityInsurance'/>
+      <enumeration value='mobilePhone'/>
+      <enumeration value='other'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='HotelDetail'>
+  <complexType>
+   <sequence>
+    <element ref='t:Vendor'/>
+    <element ref='t:Address'/>
+    <element ref='t:RoomType'/>
+    <element ref='t:BookingClassCode' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Meal' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Rate' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:AvailablePrice' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='travelSegment' type='string' use='required'/>
+   <attribute name='arrivalTime' type='string' use='required'/>
+   <attribute name='departureTime' type='string' use='required'/>
+   <attribute name='checkinTime' type='string' use='required'/>
+   <attribute name='checkoutTime' type='string' use='required'/>
+   <attribute name='earlyCheckinAllowed' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='lateCheckoutAllowed' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='RoomType'>
+  <complexType>
+   <sequence>
+    <element ref='t:Description' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Amenities' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='smoking' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+      <enumeration value='no'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='numberOfBed' type='string' use='optional'/>
+   <attribute name='bedType' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='king'/>
+      <enumeration value='queen'/>
+      <enumeration value='full'/>
+      <enumeration value='double'/>
+      <enumeration value='single'/>
+      <enumeration value='other'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='Amenities'>
+  <complexType>
+   <sequence>
+    <element ref='t:Description'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='RailDetail'>
+  <complexType>
+   <sequence>
+    <element ref='t:TripType'/>
+    <element ref='t:RailLeg' maxOccurs='unbounded'/>
+    <element ref='t:AvailablePrice' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Penalty' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='RailLeg'>
+  <complexType>
+   <sequence>
+    <element ref='t:Vendor'/>
+    <element ref='t:RailLegOrigin'/>
+    <element ref='t:RailLegDestination'/>
+    <element ref='t:BookingClassCode' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Rate' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Meal' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='travelSegment' type='string' use='required'/>
+   <attribute name='departureTime' type='string' use='required'/>
+   <attribute name='arrivalTime' type='string' use='required'/>
+   <attribute name='trainNumber' type='string' use='required'/>
+   <attribute name='seatNumber' type='string' use='optional'/>
+   <attribute name='carType' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='sleeper'/>
+      <enumeration value='seat'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='RailLegOrigin'>
+  <complexType>
+   <choice>
+    <element ref='t:Airport'/>
+    <element ref='t:Address'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='RailLegDestination'>
+  <complexType>
+   <choice>
+    <element ref='t:Airport'/>
+    <element ref='t:Address'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='TripType'>
+  <complexType>
+   <attribute name='type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='round'/>
+      <enumeration value='oneWay'/>
+      <enumeration value='multiLeg'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='Vendor'>
+  <complexType>
+   <sequence>
+    <element ref='t:Address'/>
+    <element ref='t:SupplierID' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='preferred' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+      <enumeration value='no'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='TermsAndConditions'>
+  <complexType>
+   <sequence>
+    <element ref='t:Description' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='PolicyViolation'>
+  <complexType>
+   <sequence>
+    <element ref='t:Description'/>
+    <element ref='t:PolicyViolationJustification'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='level' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='warning'/>
+      <enumeration value='violation'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='PolicyViolationJustification'>
+  <complexType>
+   <sequence>
+    <element ref='t:Description'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Penalty'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+    <element ref='t:Description'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='AvailablePrice'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+    <element ref='t:Description' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='lowest'/>
+      <enumeration value='lowestCompliant'/>
+      <enumeration value='highestCompliant'/>
+      <enumeration value='highest'/>
+      <enumeration value='other'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='Rate'>
+  <complexType>
+   <sequence>
+    <element ref='t:Total'/>
+    <element ref='t:UnitRate'/>
+    <element ref='t:Description' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='BookingClassCode'>
+  <complexType>
+   <sequence>
+    <element ref='t:Description' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='domain' type='string' use='required'/>
+   <attribute name='code' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='Total'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='BillTo'>
+  <complexType>
+   <sequence>
+    <element ref='t:Address'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ShipTo'>
+  <complexType>
+   <sequence>
+    <element ref='t:Address'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Shipping'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+    <element ref='t:Description'/>
+   </sequence>
+   <attribute name='trackingDomain' type='string' use='optional'/>
+   <attribute name='trackingId' type='string' use='optional'/>
+   <attribute name='tracking' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='PCard'>
+  <complexType>
+   <sequence>
+    <element ref='t:PostalAddress' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='number' type='string' use='required'/>
+   <attribute name='expiration' type='string' use='required'/>
+   <attribute name='name' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Discount'>
+  <complexType>
+   <choice>
+    <element ref='t:DiscountPercent'/>
+    <element ref='t:DiscountAmount'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='DiscountPercent'>
+  <complexType>
+   <attribute name='percent' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='PaymentTerm'>
+  <complexType>
+   <sequence>
+    <element ref='t:Discount' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='payInNumberOfDays' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='Payment'>
+  <complexType>
+   <sequence>
+    <element ref='t:PCard'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Segment'>
+  <complexType>
+   <attribute name='type' type='string' use='required'/>
+   <attribute name='id' type='string' use='required'/>
+   <attribute name='description' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='AccountingSegment'>
+  <complexType>
+   <sequence>
+    <element ref='t:Name'/>
+    <element ref='t:Description'/>
+   </sequence>
+   <attribute name='id' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='Accounting'>
+  <complexType>
+   <choice>
+    <element ref='t:Segment'/>
+    <element ref='t:+'/>
+    <element ref='t:AccountingSegment'/>
+    <element ref='t:+'/>
+   </choice>
+   <attribute name='name' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='Charge'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Distribution'>
+  <complexType>
+   <sequence>
+    <element ref='t:Accounting'/>
+    <element ref='t:Charge'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='TaxAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='TaxableAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='TaxLocation'>
+  <complexType mixed='true'>
+   <attribute name='xml:lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='TriangularTransactionLawReference'>
+  <complexType mixed='true'>
+   <attribute name='xml:lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='TaxDetail'>
+  <complexType>
+   <sequence>
+    <element ref='t:TaxableAmount' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:TaxAmount'/>
+    <element ref='t:TaxLocation' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Description' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:TriangularTransactionLawReference' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='purpose' type='string' use='optional'/>
+   <attribute name='category' type='string' use='required'/>
+   <attribute name='percentageRate' type='string' use='optional'/>
+   <attribute name='isVatRecoverable' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='taxPointDate' type='string' use='optional'/>
+   <attribute name='paymentDate' type='string' use='optional'/>
+   <attribute name='isTriangularTransaction' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='Tax'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+    <element ref='t:Description'/>
+    <element ref='t:TaxDetail' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ItemOut'>
+  <complexType>
+   <sequence>
+    <element ref='t:ItemID'/>
+    <element ref='t:Path' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:ItemDetail' minOccurs='0' maxOccurs='1'/>
+    <choice minOccurs='0' maxOccurs='1'>
+     <element ref='t:SupplierID'/>
+     <element ref='t:SupplierList'/>
+    </choice>
+    <element ref='t:ShipTo' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Shipping' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Tax' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:SpendDetail' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Distribution' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='quantity' type='string' use='required'/>
+   <attribute name='lineNumber' type='string' use='optional'/>
+   <attribute name='requisitionID' type='string' use='optional'/>
+   <attribute name='agreementItemNumber' type='string' use='optional'/>
+   <attribute name='requestedDeliveryDate' type='string' use='optional'/>
+   <attribute name='isAdHoc' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='ItemIn'>
+  <complexType>
+   <sequence>
+    <element ref='t:ItemID'/>
+    <element ref='t:Path' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:ItemDetail'/>
+    <element ref='t:SupplierID' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:ShipTo' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Shipping' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Tax' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:SpendDetail' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='quantity' type='string' use='required'/>
+   <attribute name='lineNumber' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='PaymentStatus'>
+  <complexType>
+   <sequence>
+    <element ref='t:PCard'/>
+    <element ref='t:Total'/>
+    <element ref='t:Shipping' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Tax' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Extrinsic' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='orderID' type='string' use='required'/>
+   <attribute name='transactionTimestamp' type='string' use='required'/>
+   <attribute name='type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='Authorization'/>
+      <enumeration value='Settlement'/>
+      <enumeration value='Sale'/>
+      <enumeration value='Credit'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='isFailed' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='transactionID' type='string' use='optional'/>
+   <attribute name='authorizationID' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='PartialAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='InvoiceStatus'>
+  <complexType>
+   <sequence>
+    <element ref='t:PartialAmount' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='processing'/>
+      <enumeration value='reconciled'/>
+      <enumeration value='rejected'/>
+      <enumeration value='paying'/>
+      <enumeration value='paid'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='OrderRequest'>
+  <complexType>
+   <sequence>
+    <element ref='t:OrderRequestHeader'/>
+    <element ref='t:ItemOut' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='OrderRequestHeader'>
+  <complexType>
+   <sequence>
+    <element ref='t:Total'/>
+    <element ref='t:ShipTo' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:BillTo'/>
+    <element ref='t:Shipping' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Tax' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Payment' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:PaymentTerm' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Followup' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:DocumentReference' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:SupplierOrderInfo' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Extrinsic' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='orderID' type='string' use='required'/>
+   <attribute name='orderDate' type='string' use='required'/>
+   <attribute name='orderType' use='default' value='regular'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='release'/>
+      <enumeration value='regular'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='type' use='default' value='new'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='new'/>
+      <enumeration value='update'/>
+      <enumeration value='delete'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='orderVersion' type='string' use='optional'/>
+   <attribute name='isInternalVersion' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='agreementID' type='string' use='optional'/>
+   <attribute name='agreementPayloadID' type='string' use='optional'/>
+   <attribute name='requisitionID' type='string' use='optional'/>
+   <attribute name='shipComplete' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='MasterAgreementRequest'>
+  <complexType>
+   <sequence>
+    <element ref='t:MasterAgreementRequestHeader'/>
+    <element ref='t:AgreementItemOut' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='MasterAgreementRequestHeader'>
+  <complexType>
+   <sequence>
+    <element ref='t:MaxAmount' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:MinAmount' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:MaxReleaseAmount' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:MinReleaseAmount' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:DocumentReference' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Extrinsic' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='agreementID' type='string' use='required'/>
+   <attribute name='agreementDate' type='string' use='required'/>
+   <attribute name='type' use='default' value='value'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='value'/>
+      <enumeration value='quantity'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='effectiveDate' type='string' use='required'/>
+   <attribute name='expirationDate' type='string' use='required'/>
+   <attribute name='parentAgreementPayloadID' type='string' use='optional'/>
+   <attribute name='operation' use='default' value='new'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='new'/>
+      <enumeration value='update'/>
+      <enumeration value='delete'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='AgreementItemOut'>
+  <complexType>
+   <sequence>
+    <element ref='t:MaxAmount' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:MinAmount' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:MaxReleaseAmount' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:MinReleaseAmount' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:ItemOut'/>
+   </sequence>
+   <attribute name='maxQuantity' type='string' use='optional'/>
+   <attribute name='minQuantity' type='string' use='optional'/>
+   <attribute name='maxReleaseQuantity' type='string' use='optional'/>
+   <attribute name='minReleaseQuantity' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='MaxAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='MinAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='MaxReleaseAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='MinReleaseAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Followup'>
+  <complexType>
+   <sequence>
+    <element ref='t:URL'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='PunchOutSetupRequest'>
+  <complexType>
+   <sequence>
+    <element ref='t:BuyerCookie'/>
+    <element ref='t:Extrinsic' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:BrowserFormPost' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:SupplierSetup' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:ShipTo' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:SelectedItem' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:ItemOut' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='operation' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='create'/>
+      <enumeration value='inspect'/>
+      <enumeration value='edit'/>
+      <enumeration value='source'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='BuyerCookie'>
+  <complexType>
+   <sequence>
+   <any namespace='http://www.w3.org/namespace/'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='SelectedItem'>
+  <complexType>
+   <sequence>
+    <element ref='t:ItemID'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='SupplierSetup'>
+  <complexType>
+   <sequence>
+    <element ref='t:URL'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='PunchOutSetupResponse'>
+  <complexType>
+   <sequence>
+    <element ref='t:StartPage'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='PunchOutOrderMessage'>
+  <complexType>
+   <sequence>
+    <element ref='t:BuyerCookie'/>
+    <element ref='t:PunchOutOrderMessageHeader'/>
+    <element ref='t:ItemIn' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='PunchOutOrderMessageHeader'>
+  <complexType>
+   <sequence>
+    <element ref='t:SourcingStatus' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Total'/>
+    <element ref='t:ShipTo' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Shipping' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Tax' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:SupplierOrderInfo' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='operationAllowed' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='create'/>
+      <enumeration value='inspect'/>
+      <enumeration value='edit'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='quoteStatus' use='default' value='final'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='pending'/>
+      <enumeration value='final'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='StatusUpdateRequest'>
+  <complexType>
+   <sequence>
+    <element ref='t:DocumentReference'/>
+    <element ref='t:Status'/>
+    <sequence minOccurs='0' maxOccurs='1'>
+     <choice>
+      <element ref='t:PaymentStatus'/>
+      <element ref='t:SourcingStatus'/>
+      <element ref='t:InvoiceStatus'/>
+     </choice>
+    </sequence>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='cXMLAttachment'>
+  <complexType>
+   <sequence>
+    <element ref='t:Attachment'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='CopyRequest'>
+  <complexType>
+   <choice>
+    <element ref='t:cXMLAttachment'/>
+    <element ref='t:cXML'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='SourcingStatus'>
+  <complexType mixed='true'>
+   <attribute name='action' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='approve'/>
+      <enumeration value='cancel'/>
+      <enumeration value='deny'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='xml:lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='DepositAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='SubtotalAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='SpecialHandlingAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ShippingAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='GrossAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='NetAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='DueAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='DiscountAmount'>
+  <complexType>
+   <sequence>
+    <element ref='t:Money'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='SpendDetail'>
+  <complexType>
+   <choice>
+    <element ref='t:TravelDetail'/>
+    <element ref='t:FeeDetail'/>
+    <element ref='t:LaborDetail'/>
+    <element ref='t:Extrinsic'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='FeeDetail'>
+  <complexType>
+   <sequence>
+    <element ref='t:UnitRate' maxOccurs='unbounded'/>
+    <element ref='t:Period' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='isRecurring' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='LaborDetail'>
+  <complexType>
+   <sequence>
+    <element ref='t:UnitRate' maxOccurs='unbounded'/>
+    <element ref='t:Period'/>
+    <element ref='t:Contractor' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:JobDescription' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Supervisor' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:WorkLocation' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='supplierReferenceCode' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='JobDescription'>
+  <complexType>
+   <sequence>
+    <element ref='t:Description'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Supervisor'>
+  <complexType>
+   <sequence>
+    <element ref='t:Contact'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='WorkLocation'>
+  <complexType>
+   <sequence>
+    <element ref='t:Address'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Contractor'>
+  <complexType>
+   <sequence>
+    <element ref='t:ContractorIdentifier'/>
+    <element ref='t:Contact'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ContractorIdentifier'>
+  <complexType mixed='true'>
+   <attribute name='domain' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='supplierReferenceID'/>
+      <enumeration value='buyerReferenceID'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='OrderReference'>
+  <complexType>
+   <sequence>
+    <element ref='t:DocumentReference'/>
+   </sequence>
+   <attribute name='orderID' type='string' use='optional'/>
+   <attribute name='orderDate' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='OrderIDInfo'>
+  <complexType>
+   <attribute name='orderID' type='string' use='required'/>
+   <attribute name='orderDate' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='OrderInfo'>
+  <complexType>
+   <choice>
+    <element ref='t:OrderReference'/>
+    <element ref='t:OrderIDInfo'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='InvoiceReference'>
+  <complexType>
+   <sequence>
+    <element ref='t:DocumentReference'/>
+   </sequence>
+   <attribute name='invoiceID' type='string' use='optional'/>
+   <attribute name='invoiceDate' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='InvoiceIDInfo'>
+  <complexType>
+   <attribute name='invoiceID' type='string' use='required'/>
+   <attribute name='invoiceDate' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='MasterAgreementIDInfo'>
+  <complexType>
+   <attribute name='agreementID' type='string' use='required'/>
+   <attribute name='agreementDate' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='MasterAgreementReference'>
+  <complexType>
+   <sequence>
+    <element ref='t:DocumentReference'/>
+   </sequence>
+   <attribute name='agreementID' type='string' use='optional'/>
+   <attribute name='agreementDate' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='CarrierIdentifier'>
+  <complexType mixed='true'>
+   <attribute name='domain' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ShipmentIdentifier'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='Creator'>
+  <complexType mixed='true'>
+   <attribute name='xml:lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='IdReference'>
+  <complexType>
+   <sequence>
+    <element ref='t:Creator' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Description' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='identifier' type='string' use='required'/>
+   <attribute name='domain' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='SupplierOrderInfo'>
+  <complexType>
+   <attribute name='orderID' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='Hazard'>
+  <complexType>
+   <choice>
+    <sequence>
+     <element ref='t:Description' maxOccurs='unbounded'/>
+     <element ref='t:Classification' minOccurs='0' maxOccurs='unbounded'/>
+    </sequence>
+    <element ref='t:Classification'/>
+    <element ref='t:+'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='ConfirmationRequest'>
+  <complexType>
+   <sequence>
+    <element ref='t:ConfirmationHeader'/>
+    <element ref='t:OrderReference'/>
+    <element ref='t:ConfirmationItem' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ConfirmationHeader'>
+  <complexType>
+   <sequence>
+    <element ref='t:DocumentReference' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Total' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Shipping' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Tax' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Hazard' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Extrinsic' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='confirmID' type='string' use='optional'/>
+   <attribute name='operation' use='default' value='new'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='new'/>
+      <enumeration value='update'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='accept'/>
+      <enumeration value='allDetail'/>
+      <enumeration value='detail'/>
+      <enumeration value='backordered'/>
+      <enumeration value='except'/>
+      <enumeration value='reject'/>
+      <enumeration value='requestToPay'/>
+      <enumeration value='replace'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='noticeDate' type='string' use='required'/>
+   <attribute name='invoiceID' type='string' use='optional'/>
+   <attribute name='incoTerms' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='cfr'/>
+      <enumeration value='cif'/>
+      <enumeration value='cip'/>
+      <enumeration value='cpt'/>
+      <enumeration value='daf'/>
+      <enumeration value='ddp'/>
+      <enumeration value='ddu'/>
+      <enumeration value='deq'/>
+      <enumeration value='des'/>
+      <enumeration value='exw'/>
+      <enumeration value='fas'/>
+      <enumeration value='fca'/>
+      <enumeration value='fob'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='ConfirmationItem'>
+  <complexType>
+   <sequence>
+    <element ref='t:UnitOfMeasure'/>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Hazard' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:ConfirmationStatus' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='quantity' type='string' use='required'/>
+   <attribute name='lineNumber' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ConfirmationStatus'>
+  <complexType>
+   <sequence>
+    <element ref='t:UnitOfMeasure'/>
+    <choice>
+     <element ref='t:ItemIn'/>
+     <sequence>
+      <element ref='t:UnitPrice' minOccurs='0' maxOccurs='1'/>
+      <element ref='t:Tax' minOccurs='0' maxOccurs='1'/>
+      <element ref='t:Shipping' minOccurs='0' maxOccurs='1'/>
+     </sequence>
+    </choice>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Extrinsic' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='quantity' type='string' use='required'/>
+   <attribute name='type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='accept'/>
+      <enumeration value='allDetail'/>
+      <enumeration value='detail'/>
+      <enumeration value='backordered'/>
+      <enumeration value='reject'/>
+      <enumeration value='unknown'/>
+      <enumeration value='requestToPay'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='shipmentDate' type='string' use='optional'/>
+   <attribute name='deliveryDate' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ShipNoticeRequest'>
+  <complexType>
+   <sequence>
+    <element ref='t:ShipNoticeHeader'/>
+    <element ref='t:ShipControl' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:ShipNoticePortion' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ShipNoticeHeader'>
+  <complexType>
+   <sequence>
+    <element ref='t:ServiceLevel' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:DocumentReference' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Hazard' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Extrinsic' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='shipmentID' type='string' use='required'/>
+   <attribute name='operation' use='default' value='new'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='new'/>
+      <enumeration value='update'/>
+      <enumeration value='delete'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='noticeDate' type='string' use='required'/>
+   <attribute name='shipmentDate' type='string' use='optional'/>
+   <attribute name='deliveryDate' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ServiceLevel'>
+  <complexType mixed='true'>
+   <attribute name='xml:lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ShipControl'>
+  <complexType>
+   <sequence>
+    <element ref='t:CarrierIdentifier' maxOccurs='unbounded'/>
+    <element ref='t:ShipmentIdentifier'/>
+    <element ref='t:PackageIdentification' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Route' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Extrinsic' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='startDate' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='PackageIdentification'>
+  <complexType>
+   <attribute name='rangeBegin' type='string' use='required'/>
+   <attribute name='rangeEnd' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='Route'>
+  <complexType>
+   <sequence>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='method' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='air'/>
+      <enumeration value='motor'/>
+      <enumeration value='rail'/>
+      <enumeration value='ship'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='startDate' type='string' use='optional'/>
+   <attribute name='endDate' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ShipNoticePortion'>
+  <complexType>
+   <sequence>
+    <element ref='t:OrderReference'/>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Extrinsic' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:ShipNoticeItem' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ShipNoticeItem'>
+  <complexType>
+   <sequence>
+    <element ref='t:UnitOfMeasure'/>
+    <element ref='t:Packaging' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Hazard' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='quantity' type='string' use='required'/>
+   <attribute name='lineNumber' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='Packaging'>
+  <complexType>
+   <choice>
+    <sequence>
+     <element ref='t:PackagingCode' maxOccurs='unbounded'/>
+     <element ref='t:Dimension' minOccurs='0' maxOccurs='unbounded'/>
+    </sequence>
+    <element ref='t:Dimension'/>
+    <element ref='t:+'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='PackagingCode'>
+  <complexType mixed='true'>
+   <attribute name='xml:lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='Dimension'>
+  <complexType>
+   <sequence>
+    <element ref='t:UnitOfMeasure'/>
+   </sequence>
+   <attribute name='quantity' type='string' use='required'/>
+   <attribute name='type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='length'/>
+      <enumeration value='width'/>
+      <enumeration value='height'/>
+      <enumeration value='weight'/>
+      <enumeration value='volume'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='cXML'>
+  <complexType>
+   <sequence>
+    <choice>
+     <sequence>
+      <element ref='t:Header'/>
+      <choice>
+       <element ref='t:Message'/>
+       <element ref='t:Request'/>
+      </choice>
+     </sequence>
+     <element ref='t:Response'/>
+    </choice>
+    <element ref='t:ds'/>
+   <attribute name='version' type='string' use='default' value='&cxml.version;'/>
+   <attribute name='payloadID' type='string' use='required'/>
+   <attribute name='timestamp' type='string' use='required'/>
+   <attribute name='signatureVersion' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='1.0'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='xml:lang' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Header'>
+  <complexType>
+   <sequence>
+    <element ref='t:From'/>
+    <element ref='t:To'/>
+    <element ref='t:Sender'/>
+    <sequence minOccurs='0' maxOccurs='1'>
+     <element ref='t:Path'/>
+     <element ref='t:OriginalDocument'/>
+    </sequence>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='From'>
+  <complexType>
+   <sequence>
+    <element ref='t:Credential' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='To'>
+  <complexType>
+   <sequence>
+    <element ref='t:Credential' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Sender'>
+  <complexType>
+   <sequence>
+    <element ref='t:Credential' maxOccurs='unbounded'/>
+    <element ref='t:UserAgent'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Path'>
+  <complexType>
+   <sequence>
+    <element ref='t:Node' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Node'>
+  <complexType>
+   <sequence>
+    <element ref='t:Credential' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='copy'/>
+      <enumeration value='route'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='itemDetailsRequired' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='OriginalDocument'>
+  <complexType>
+   <attribute name='payloadID' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='UserAgent'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='DigitalSignature'>
+  <complexType>
+   <sequence>
+   <any namespace='http://www.w3.org/namespace/'/>
+   </sequence>
+   <attribute name='type' type='string' use='default' value='PK7 self-contained'/>
+   <attribute name='encoding' type='string' use='default' value='Base64'/>
+  </complexType>
+ </element>
+
+ <element name='SharedSecret'>
+  <complexType>
+   <sequence>
+   <any namespace='http://www.w3.org/namespace/'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='Identity'>
+  <complexType>
+   <sequence>
+   <any namespace='http://www.w3.org/namespace/'/>
+   </sequence>
+   <attribute name='lastChangedTimestamp' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='CredentialMac'>
+  <complexType mixed='true'>
+   <attribute name='type' type='string' use='required'/>
+   <attribute name='algorithm' type='string' use='required'/>
+   <attribute name='creationDate' type='string' use='required'/>
+   <attribute name='expirationDate' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='Credential'>
+  <complexType>
+   <sequence>
+    <element ref='t:Identity'/>
+    <choice minOccurs='0' maxOccurs='1'>
+     <element ref='t:SharedSecret'/>
+     <element ref='t:DigitalSignature'/>
+     <element ref='t:CredentialMac'/>
+    </choice>
+   </sequence>
+   <attribute name='domain' type='string' use='required'/>
+   <attribute name='type' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='marketplace'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='Status'>
+  <complexType mixed='true'>
+   <attribute name='code' type='string' use='required'/>
+   <attribute name='text' type='string' use='required'/>
+   <attribute name='xml:lang' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Message'>
+  <complexType>
+   <sequence>
+    <element ref='t:Status' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='deploymentMode' use='default' value='production'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='production'/>
+      <enumeration value='test'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='inReplyTo' type='string' use='optional'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Request'>
+  <complexType>
+   <choice>
+    <element ref='t:ConfirmationRequest'/>
+    <element ref='t:ShipNoticeRequest'/>
+    <element ref='t:CopyRequest'/>
+    <element ref='t:TimeCardInfoRequest'/>
+    <element ref='t:TimeCardRequest'/>
+   </choice>
+   <attribute name='deploymentMode' use='default' value='production'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='production'/>
+      <enumeration value='test'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='Response'>
+  <complexType>
+   <sequence>
+    <element ref='t:Status'/>
+   </sequence>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='cXMLSignedInfo'>
+  <complexType>
+   <attribute name='signatureVersion' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='1.0'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='payloadID' type='string' use='required'/>
+   <attribute name='Id' type='ID' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='TimeCardRequest'>
+  <complexType>
+   <sequence>
+    <element ref='t:TimeCard'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='TimeCardInfoRequest'>
+  <complexType>
+   <sequence>
+    <element ref='t:TimeCard'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='TimeCard'>
+  <complexType>
+   <sequence>
+    <element ref='t:OrderInfo'/>
+    <element ref='t:Contractor'/>
+    <element ref='t:ReportedTime'/>
+    <element ref='t:SubmitterInfo'/>
+    <element ref='t:ApprovalInfo' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:DocumentReference' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='type' use='default' value='new'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='new'/>
+      <enumeration value='update'/>
+      <enumeration value='delete'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='status' use='default' value='submitted'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='submitted'/>
+      <enumeration value='approved'/>
+      <enumeration value='denied'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='timeCardID' type='NMTOKEN' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ReportedTime'>
+  <complexType>
+   <sequence>
+    <element ref='t:Period'/>
+    <element ref='t:TimeCardTimeInterval' maxOccurs='unbounded'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='TimeCardTimeInterval'>
+  <complexType>
+   <sequence>
+    <element ref='t:TimeRange'/>
+    <element ref='t:Comments' minOccurs='0' maxOccurs='1'/>
+    <element ref='t:Extrinsic' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='duration' type='string' use='required'/>
+   <attribute name='payCode' type='string' use='required'/>
+   <attribute name='isNonBillable' use='optional'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='SubmitterInfo'>
+  <complexType>
+   <sequence>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='submittedDate' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ApprovalInfo'>
+  <complexType>
+   <sequence>
+    <element ref='t:Contact' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+   <attribute name='approvedDate' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ds:Signature'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+   <attribute name='xmlns:ds' type='string' use='fixed' value='http://www.w3.org/2000/09/xmldsig#'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ds:SignatureValue'>
+  <complexType mixed='true'>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ds:SignedInfo'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ds:CanonicalizationMethod'>
+  <complexType mixed='true'>
+   <attribute name='Algorithm' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ds:SignatureMethod'>
+  <complexType mixed='true'>
+   <sequence>
+    <element ref='t:ds'/>
+   <attribute name='Algorithm' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ds:Reference'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+   <attribute name='Id' type='ID' use='optional'/>
+   <attribute name='URI' type='string' use='optional'/>
+   <attribute name='Type' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ds:Transforms'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='ds:Transform'>
+  <complexType mixed='true'>
+   <sequence>
+    <element ref='t:ds'/>
+   <attribute name='Algorithm' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ds:XPath'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:DigestMethod'>
+  <complexType mixed='true'>
+   <attribute name='Algorithm' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ds:DigestValue'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:KeyInfo'>
+  <complexType mixed='true'>
+   <sequence>
+    <element ref='t:ds'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ds:KeyName'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:KeyValue'>
+  <complexType mixed='true'>
+   <sequence>
+    <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='ds:MgmtData'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:RetrievalMethod'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+   <attribute name='URI' type='string' use='required'/>
+   <attribute name='Type' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ds:X509Data'>
+  <complexType>
+   <sequence>
+    <sequence>
+     <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='ds:X509IssuerSerial'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='ds:X509IssuerName'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:X509SubjectName'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:X509SerialNumber'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:X509SKI'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:X509Certificate'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:X509CRL'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:PGPData'>
+  <complexType>
+   <sequence>
+    <sequence>
+     <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='ds:PGPKeyPacket'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:PGPKeyID'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:SPKIData'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='ds:SPKISexp'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:Object'>
+  <complexType mixed='true'>
+   <sequence>
+    <element ref='t:ds'/>
+   <attribute name='Id' type='ID' use='optional'/>
+   <attribute name='MimeType' type='string' use='optional'/>
+   <attribute name='Encoding' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ds:Manifest'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ds:SignatureProperties'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ds:SignatureProperty'>
+  <complexType mixed='true'>
+   <attribute name='Target' type='string' use='required'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='ds:HMACOutputLength'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:DSAKeyValue'>
+  <complexType>
+   <sequence>
+    <sequence>
+     <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='ds:P'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:Q'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:G'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:Y'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:J'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:Seed'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:PgenCounter'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:RSAKeyValue'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='ds:Modulus'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='ds:Exponent'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:Any'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:ObjectIdentifier'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:Identifier'>
+  <complexType mixed='true'>
+   <attribute name='URI' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:Description'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:DocumentationReferences'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:DocumentationReference'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:EncapsulatedPKIData'>
+  <complexType mixed='true'>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:TimeStamp'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:HashDataInfo'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+   <attribute name='uri' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='xades:EncapsulatedTimeStamp'>
+  <complexType mixed='true'>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:XMLTimeStamp'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:QualifyingProperties'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+   <attribute name='Target' type='string' use='required'/>
+   <attribute name='Id' type='ID' use='optional'/>
+   <attribute name='xmlns:xades' type='string' use='fixed' value='http://uri.etsi.org/01903/v1.1.1#'/>
+  </complexType>
+ </element>
+
+ <element name='xades:SignedProperties'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:UnsignedProperties'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:SignedSignatureProperties'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:SignedDataObjectProperties'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:UnsignedSignatureProperties'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:UnsignedDataObjectProperties'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:UnsignedDataObjectProperty'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:QualifyingPropertiesReference'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+   <attribute name='URI' type='string' use='required'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:SigningTime'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:SigningCertificate'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:Cert'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:CertDigest'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='xades:IssuerSerial'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='xades:SignaturePolicyIdentifier'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:SignaturePolicyId'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:SignaturePolicyImplied'>
+  <complexType>
+   <sequence>
+   <any namespace='http://www.w3.org/namespace/'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='xades:SigPolicyId'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:SigPolicyHash'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='xades:SigPolicyQualifiers'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:SigPolicyQualifier'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:SPURI'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:SPUserNotice'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:NoticeRef'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:ExplicitText'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:Organization'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:NoticeNumbers'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:CounterSignature'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='xades:DataObjectFormat'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+   <attribute name='ObjectReference' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='xades:MimeType'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:Encoding'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:CommitmentTypeIndication'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:CommitmentTypeId'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:ObjectReference'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:AllSignedDataObjects'>
+  <complexType>
+   <sequence>
+   <any namespace='http://www.w3.org/namespace/'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='xades:CommitmentTypeQualifiers'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:CommitmentTypeQualifier'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:SignatureProductionPlace'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:City'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:StateOrProvince'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:PostalCode'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:CountryName'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:SignerRole'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:ClaimedRoles'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:CertifiedRoles'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:ClaimedRole'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:CertifiedRole'>
+  <complexType mixed='true'>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:AllDataObjectsTimeStamp'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:IndividualDataObjectsTimeStamp'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:SignatureTimeStamp'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:CompleteCertificateRefs'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:CertRefs'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:CompleteRevocationRefs'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:CRLRefs'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:OCSPRefs'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:OtherRefs'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:CRLRef'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:OCSPRef'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:OtherRef'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:DigestAlgAndValue'>
+  <complexType>
+   <sequence>
+    <element ref='t:ds'/>
+  </complexType>
+ </element>
+
+ <element name='xades:CRLIdentifier'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:OCSPIdentifier'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:Issuer'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:IssueTime'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:Number'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:ResponderID'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:ProducedAt'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:SigAndRefsTimeStamp'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:RefsOnlyTimeStamp'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:CertificateValues'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:EncapsulatedX509Certificate'>
+  <complexType mixed='true'>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:OtherCertificate'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:RevocationValues'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:CRLValues'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:OCSPValues'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:OtherValues'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+
+ <element name='xades:EncapsulatedCRLValue'>
+  <complexType mixed='true'>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:EncapsulatedOCSPValue'>
+  <complexType mixed='true'>
+   <attribute name='Id' type='ID' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='xades:OtherValue'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='xades:ArchiveTimeStamp'>
+  <complexType>
+   <sequence>
+    <element ref='t:xades'/>
+  </complexType>
+ </element>
+</schema>
